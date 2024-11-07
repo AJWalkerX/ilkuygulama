@@ -1,46 +1,94 @@
-# Getting Started with Create React App
+# REACT JS GEREKLİ KURULUMLAR VE NOTLARIM
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Kurulum
 
-## Available Scripts
+        ilk olarak reactjs çalıştıra bilmek için bunu yayınlayacak ve kodları yorumlayacak
+    bir sunucuya ihtiyaç var ayrıca paket kurulumları için bir paket yöneticisine ihtiyaç
+    bulunmaktadır.
+        NodeJS tüm gerekli servis ve paket yönetim araçlarını içerisinde barındırmaktadır.
 
-In the project directory, you can run:
+```link
+    https://nodejs.org/en/download/package-manager
+```
 
-### `npm start`
+```bash
+# node js kurulumunu kontrol etmek için
+node -v
+# paket yöneticisini kontrol etmek için
+npm -v
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+        reactJS uygulamalarını kurmak için ve dökümantasyonlar için aşağıdaki linkleri
+    ziyaret ediniz.
+    - https://react.dev/learn/start-a-new-react-project
+    - https://create-react-app.dev/docs/getting-started
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+    JS doğası gereği tip güvenliği sağlamamaktadır, bu nedenle kodlarımızı daha güvenli
+    ve yönetilebilir yapmak için projelerimizi TypeScript(TS) ile kuracağız yada önceden
+    standart olarak kurmuş isek ek olarak TS kurulumu ekleyerek TS haline getireceğiz.
 
-### `npm test`
+```bash
+    # TS olmadan kurulum yapmak yani JS
+    npx create-react-app uygulama-adi
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+    # TypeScript destekli şekilde uygulamayı kurmak
+    npx create-react-app uygulama-adi --template typescript
+```
 
-### `npm run build`
+    Örnek Proje:
+     npx create-react-app ilkuygulama --template typescript
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    DİKKAT!!! kurulumlar ve başlatma işlemler için öncelikle terminal ekranına geçiniz.
+    NOT!! terminal ekranına geçmeden önce uygulamayı kapatıp açmak gerekebilir. Ayrıca,windows sistemler için  powershell yerine cmd kullanılmalı. bu ayrımı + ikonun yanındaki aşağı ok tuşuna basarak command prompt seçilerek yapılır.
+    burada hangi dizin içerisine projeyi atacak iseniz öncelikle o klasöre geçin.
+    [> cd Uygulamalarim]
+    sonra buraya oluşturmak istediğini proje komutunu giriyorsunuz
+    [Uygulamalarim>npx create-react-app ilkuygulama --template typescript]
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Çalıştırmak - Uygulamyı başlatmak
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    Uygulamayı başlatmak için "npm start" yeterlidir. Ancak, uygulamanın başlaması için uygulama configlerini içeren package.json dosyasına gerek vardır. Eğer konum olarak uygulamın dizininde değil iseniz npm start hata verecektir.
+    Örn:
+    uygulamanızın paket yapısı şöyle olsun
+    - REACTJS (Ana Klasör)
+    --- ilkislemler(alt klasör)
+    --- Uygulamalarim(alt klasör)
+    ------ ilkuygulama(uygulama klasörü)
+    CMD: ReactJS>Uygulamalarim>npm start
+    Hata verecektir. çünkü konum olarak projenin içinde değilsin.
+    ÇÖZÜM:
+    uygulamanızın dizinine geçeceksiniz
+    CMD: ReactJS>Uygulamalarim>cd ilkuygulama
+    CMD: ReactJS>Uygulamalarim>ilkuygulama>npm start
 
-### `npm run eject`
+## Uygulamanın Portunu değiştirmek
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    Aşağıdaki şekillede kendine uygun işletim sistemini seçerek port bilgisini güncelleyebilirsiniz. Bu işlemi yapmak için package.json dosyasında scripts alanında değişiklik yapacaksınız.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```json
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+ "scripts": {
+    // default olarak çalışır 3000 portu kullanılır.
+    // "start": "react-scripts start",
+    // windows için
+    // "start":"set PORT=9990 && react-scripts start",
+    // MACOS & farklı versiyonlar
+    // Yeni veryion "start": "PORT=9990 react-scripts start",
+    // Eski versiyon MACOS = "start": "export PORT=9990 react-scripts start",
+    "start": "PORT=9990 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  }
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
 
-## Learn More
+## Kaynak Kodların görünürlüğünü karıştırmak
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```json
+"scripts": {
+    "build": "set GENERATE_SOURCEMAP=false && react-scripts build",
+  },
+```
